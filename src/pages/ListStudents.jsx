@@ -49,12 +49,6 @@ function ListStudents() {
     const findStudentsByLastname = (event) => {
         event.preventDefault();
         setSearchValue(event.target.value)
-        // if (searchValue !== "") {
-        //     dispatch(setCurrentPage(1))
-        //     dispatch(loadStudentsByLastname(1, perPage, searchValue))
-        // } else {
-        //     dispatch(loadStudents(currentPage, perPage))
-        // }
     }
 
     /**
