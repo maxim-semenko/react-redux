@@ -8,8 +8,11 @@ export function createPages(pages, pagesCount, currentPage) {
                 }
             }
         } else {
-            for (let i = 1; i < pagesCount; i++) {
+            for (let i = 1; i <= 10; i++) {
                 pages.push(i)
+                if (i === pagesCount) {
+                    break
+                }
             }
         }
     } else {
