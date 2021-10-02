@@ -70,6 +70,55 @@ function ListStudents() {
         setShowDeleteModal(true)
     }
 
+    const showPageContent = () => {
+        return (
+            <div>
+                {
+                    students.length === 0 && searchValue === "" ?
+                        <div>
+                            <div style={{justifyContent: 'center', alignItems: 'center'}}>
+                                <h1 className="text-center">
+                                    <h1>Нет записей</h1>
+                                    <Button
+                                        variant="primary"
+                                        size={"lg"}
+                                        onClick={() => setShowCreateUpdateModal(true)}>Создать
+                                    </Button>{' '}
+                                </h1>
+                            </div>
+                        </div>
+                        :
+                        <div>
+                            <Navbar bg="light" expand="lg">
+                                <Container fluid>
+                                    <Navbar.Collapse>
+                                        <Button
+                                            variant="primary"
+                                            onClick={() => {
+                                                setShowCreateUpdateModal(true);
+                                                setMethod("create")
+                                            }}>Создать</Button>
+                                    </Navbar.Collapse>
+                                    <Navbar.Collapse className="justify-content-end">
+                                        <Form className="d-flex">
+                                            <FormControl
+                                                type="search"
+                                                placeholder="Поиск"
+                                                className="me-2"
+                                                onChange={event => findStudentsByLastname(event)}
+                                                aria-label="Search"
+                                            />
+                                        </Form>
+                                    </Navbar.Collapse>
+                                </Container>
+                            </Navbar>
+                            {showList()}
+                        </div>
+                }
+            </div>
+        )
+    }
+
     const showPagination = () => {
         return (
             <div>
@@ -189,48 +238,7 @@ function ListStudents() {
                         {
                             loading === false ?
                                 <div>
-                                    {
-                                        students.length === 0 && searchValue === "" ?
-                                            <div>
-                                                <div style={{justifyContent: 'center', alignItems: 'center'}}>
-                                                    <h1 className="text-center">
-                                                        <h1>Нет записей</h1>
-                                                        <Button
-                                                            variant="primary"
-                                                            size={"lg"}
-                                                            onClick={() => setShowCreateUpdateModal(true)}>Создать
-                                                        </Button>{' '}
-                                                    </h1>
-                                                </div>
-                                            </div>
-                                            :
-                                            <div>
-                                                <Navbar bg="light" expand="lg">
-                                                    <Container fluid>
-                                                        <Navbar.Collapse>
-                                                            <Button
-                                                                variant="primary"
-                                                                onClick={() => {
-                                                                    setShowCreateUpdateModal(true);
-                                                                    setMethod("create")
-                                                                }}>Создать</Button>
-                                                        </Navbar.Collapse>
-                                                        <Navbar.Collapse className="justify-content-end">
-                                                            <Form className="d-flex">
-                                                                <FormControl
-                                                                    type="search"
-                                                                    placeholder="Поиск"
-                                                                    className="me-2"
-                                                                    onChange={event => findStudentsByLastname(event)}
-                                                                    aria-label="Search"
-                                                                />
-                                                            </Form>
-                                                        </Navbar.Collapse>
-                                                    </Container>
-                                                </Navbar>
-                                                {showList()}
-                                            </div>
-                                    }
+                                    {showPageContent()}
                                 </div>
                                 :
                                 <div>
